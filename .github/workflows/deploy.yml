@@ -33,9 +33,9 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build
-        env:
-          BASE_PATH: "/${{ github.event.repository.name }}/"
-        run: pnpm build
+        run: |
+          pnpm tsc -p tsconfig.json
+          pnpm vite build --base="/${{ github.event.repository.name }}/"
 
       - uses: actions/upload-pages-artifact@v3
         with:
